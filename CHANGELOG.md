@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.8.0](https://github.com/hajowieland/debug-pod/compare/0.7.0...0.8.0) (2026-07-24)
+
+
+### Features
+
+* migrate CI to hajowieland org, update base image and all tools ([3f26107](https://github.com/hajowieland/debug-pod/commit/3f2610753b053c0fc295ce0a8c822a4985876462))
+
 ## [0.7.0](https://github.com/ventx/debug-pod/compare/0.6.0...0.7.0) (2023-06-25)
 
 
