@@ -1,6 +1,7 @@
 documentation:
-  - ./*.md
+  - changed-files:
+      - any-glob-to-any-file: '*.md'
 
 ci:
-  - .dependabot/*
-  - .github/*
+  - changed-files:
+      - any-glob-to-any-file: '.github/**'
