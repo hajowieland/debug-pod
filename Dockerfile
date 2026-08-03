@@ -42,6 +42,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
   nmap \
   openssh-client \
   postgresql-client \
+  tcpdump \
   tree \
   unzip \
   vim-tiny \
