@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.9.0](https://github.com/hajowieland/debug-pod/compare/0.8.0...0.9.0) (2026-08-03)
+
+
+### Features
+
+* add tcpdump for network debugging ([cdc4c98](https://github.com/hajowieland/debug-pod/commit/cdc4c98cdaed90caa9b8750cd92dce5114a08285))
+* add tcpdump for network debugging ([01020eb](https://github.com/hajowieland/debug-pod/commit/01020eb7294d10f3ad4441b0a088e42678d3d854))
+
 ## [0.8.0](https://github.com/hajowieland/debug-pod/compare/0.7.0...0.8.0) (2026-07-24)
 
 
