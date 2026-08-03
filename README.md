@@ -7,7 +7,7 @@ Multi-Arch Debug Pod for Kubernetes
 
 ## Docker Hub
 
-[hajowieland/debug-pod:0.8.0](https://hub.docker.com/r/hajowieland/debug-pod) <!-- {x-release-please-version} -->
+[hajowieland/debug-pod:0.9.0](https://hub.docker.com/r/hajowieland/debug-pod) <!-- {x-release-please-version} -->
 
 
 ## Docker image
