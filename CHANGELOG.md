@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.10.0](https://github.com/hajowieland/debug-pod/compare/0.9.0...0.10.0) (2026-09-04)
+
+
+### Features
+
+* flux schema and version bump ([#4](https://github.com/hajowieland/debug-pod/issues/4)) ([cbef5f1](https://github.com/hajowieland/debug-pod/commit/cbef5f1a973354020928647b5434b30177fe12b2))
+
 ## [0.9.0](https://github.com/hajowieland/debug-pod/compare/0.8.0...0.9.0) (2026-08-03)
 
 
