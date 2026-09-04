@@ -18,13 +18,15 @@ LABEL maintainer="Hans Jörg Wieland <mail@wieland.tech>" \
       org.opencontainers.image.version="${VERSION}" \
       org.opencontainers.image.vendor="Wieland IT-Consulting"
 
-ENV AWSCLI="2.36.5"
+ENV AWSCLI="2.36.39"
 ENV DEBIAN_FRONTEND="noninteractive"
-ENV ETCD="v3.6.13"
-ENV FLUXCLI="2.9.1"
-ENV KUBECTL="1.36.2"
+ENV ETCD="v3.7.1"
+ENV FLUXCD_PLUGINS="/usr/local/bin"
+ENV FLUXCLI="2.9.5"
+ENV FLUXSCHEMA="0.12.1"
+ENV KUBECTL="1.37.0"
 ENV TZ="Europe/Berlin"
-ENV YQ="4.53.3"
+ENV YQ="4.53.6"
 
 # Install packages
 # hadolint ignore=DL3008
@@ -71,9 +73,10 @@ RUN if [ "$TARGETPLATFORM" = "linux/arm64" ]; then ARCHITECTURE=aarch64; elif [ 
 RUN if [ "$TARGETPLATFORM" = "linux/arm64" ]; then ARCHITECTURE=arm64; elif [ "$TARGETPLATFORM" = "linux/arm/v7" ]; then ARCHITECTURE=none; else ARCHITECTURE=amd64; fi && \
   if [ "$ARCHITECTURE" = "none" ]; then echo "etcd has no armv7 release, skipping"; else \
   curl -fSsL -o /tmp/etcd.tar.gz "https://github.com/etcd-io/etcd/releases/download/${ETCD}/etcd-${ETCD}-linux-${ARCHITECTURE}.tar.gz" && \
-  tar xzf /tmp/etcd.tar.gz -C /tmp && \
-  mv "/tmp/etcd-${ETCD}-linux-${ARCHITECTURE}/etcdctl" "/tmp/etcd-${ETCD}-linux-${ARCHITECTURE}/etcdutl" /usr/local/bin/ && \
-  rm -rf /tmp/etcd* && \
+  tar xOzf /tmp/etcd.tar.gz "etcd-${ETCD}-linux-${ARCHITECTURE}/etcdctl" > /usr/local/bin/etcdctl && \
+  tar xOzf /tmp/etcd.tar.gz "etcd-${ETCD}-linux-${ARCHITECTURE}/etcdutl" > /usr/local/bin/etcdutl && \
+  chmod +x /usr/local/bin/etcdctl /usr/local/bin/etcdutl && \
+  rm -f /tmp/etcd.tar.gz && \
   etcdctl version && etcdutl version; fi
 
 # Flux CLI
@@ -83,6 +86,11 @@ RUN if [ "$TARGETPLATFORM" = "linux/amd64" ]; then ARCHITECTURE=amd64; elif [ "$
   mv /tmp/flux /usr/local/bin/ && \
   rm -rf /tmp/flux* && \
   flux --version
+
+# Flux Schema plugin
+RUN if [ "$TARGETPLATFORM" = "linux/arm/v7" ]; then echo "Flux Schema has no armv7 release, skipping"; else \
+  flux plugin install "schema@${FLUXSCHEMA}" && \
+  flux schema version; fi
 
 # kubectl
 RUN if [ "$TARGETPLATFORM" = "linux/amd64" ]; then ARCHITECTURE=linux/amd64; elif [ "$TARGETPLATFORM" = "linux/arm/v7" ]; then ARCHITECTURE=linux/arm; elif [ "$TARGETPLATFORM" = "linux/arm64" ]; then ARCHITECTURE=linux/arm64; else ARCHITECTURE=linux/amd64; fi && \
@@ -97,4 +105,3 @@ RUN if [ "$TARGETPLATFORM" = "linux/amd64" ]; then ARCHITECTURE=amd64; elif [ "$
   yq --version
 
 CMD ["kubectl", "version", "--client"]
-
