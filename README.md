@@ -50,5 +50,6 @@ Multi-Arch Debug Pod for Kubernetes
 * [aws](https://github.com/aws/aws-cli) — amd64/arm64 only (no armv7 release)
 * [etcdctl / etcdutl](https://github.com/etcd-io/etcd) — amd64/arm64 only (no armv7 release)
 * [flux](https://github.com/fluxcd/flux2)
+* [flux schema](https://github.com/fluxcd/flux-schema) — amd64/arm64 only (no armv7 release)
 * [kubectl](https://github.com/kubernetes/kubectl)
 * [yq](https://github.com/mikefarah/yq)
